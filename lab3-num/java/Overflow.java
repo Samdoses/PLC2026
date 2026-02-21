@@ -86,7 +86,9 @@ public class Overflow
         for ( int j = 1; j <= m; j++ )
         {
             ns = ns * n;
-//             assert ?? : "Floating-point overflow";
+            if (Float.isInfinite(ns)) {
+                throw new ArithmeticException("Floating-point overflow at power " + j);
+            }
             resultList.add(ns);
         }
         return resultList;
