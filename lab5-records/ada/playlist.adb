@@ -29,12 +29,20 @@ procedure PlayList is
 
     procedure Put_Item (i : Item) is
     begin
-        Put (To_String (i.name));
-        Put (" by ");
-        Put_Person (i.performer);
-        Put (" (");
-        Put (i.length_secs, aft => 1, exp => 0);
-        Put ("s)");
+        case i.variant is 
+            when Piece =>
+                Put (To_String (i.name));
+                Put (" by ");
+                Put_Person (i.performer);
+                Put (" (");
+                Put (i.length_secs, aft => 1, exp => 0);
+                Put ("s)");
+            when PAUSE =>
+                Put ("Pause ");
+                Put (" (");
+                Put (i.length_secs, aft => 1, exp => 0);
+                Put ("s)");
+        end case;
     end Put_Item;
 
     piece1 : Item :=
